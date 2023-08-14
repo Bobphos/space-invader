@@ -2,38 +2,86 @@ const canvas = document.getElementById("ca");
 const ctx = canvas.getContext("2d");
 
 ctx.fillStyle = "green";
-let x = 10;
-let y = 10;
+let x = 40;
+let y = 200;
 const width = 100;
 const height = 150;
-
-setInterval(drawSquare, 1000);
+let speed = 2; 
+let intervalId;
 
 function drawSquare() {
     resetCanvas();
     ctx.fillRect(x, y, width, height);
 }
 
-function resetCanvas(){
- ctx.clearRect(0, 0, canvas.width, canvas.height);
+function resetCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function startMoving(direction) {
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            moveSquare(direction);
+            drawSquare();
+        }, speed);
+    }
+}
+
+function stopMoving() {
+    clearInterval(intervalId);
+    intervalId = null;
+}
+
+function moveSquare(direction) {
+    if (direction === "right") {
+        x += speed;
+    } else if (direction === "left") {
+        x -= speed;
+    } else if (direction === "up") {
+        y -= speed;
+    } else if (direction === "down") {
+        y += speed;
+    }
 }
 
 document.addEventListener('keydown', (event) => {
-  console.log(`key pressed: ${event.key}`);
-    if (event.key === 'd' || event.key === 'D'){
-        x++;
-        drawSquare();
-    } else if (event.key === "a" || event.key === "A"){
-        x--;
-        drawSquare()
-    } else if (event.key === "w"||event.key === "W"){
-        y--;
-        drawSquare()
-    } else if (event.key === "s"||event.key ==="S"){
-        y++;
-        drawSquare()
+    switch (event.key) {
+        case 'd':
+        case 'D':
+            startMoving("right");
+            break;
+        case 'a':
+        case 'A':
+            startMoving("left");
+            break;
+        case 'w':
+        case 'W':
+            startMoving("up");
+            break;
+        case 's':
+        case 'S':
+            startMoving("down");
+            break;
     }
 });
+
+document.addEventListener('keyup', (event) => {
+    switch (event.key) {
+        case 'd':
+        case 'D':
+        case 'a':
+        case 'A':
+        case 'w':
+        case 'W':
+        case 's':
+        case 'S':
+            stopMoving();
+            break;
+    }
+});
+
+drawSquare(); 
+
 
 
 

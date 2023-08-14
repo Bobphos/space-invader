@@ -18,24 +18,6 @@ function resetCanvas(){
  ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
 
-function moveObject (Direction){
-    switch (Direction){
-        case "up":
-            y -= speed;
-            break;
-        case "down":
-            y += speed;
-            break;
-        case "left":
-            x -= speed;
-            break;
-        case "right":
-            x += speed;
-            break;
-    }
-    drawSquare();
-}
-
 document.addEventListener('keydown', (event) => {
   console.log(`key pressed: ${event.key}`);
     if (event.key === 'd' || event.key === 'D'){

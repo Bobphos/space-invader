@@ -2,32 +2,59 @@ const canvas = document.getElementById("ca");
 const ctx = canvas.getContext("2d");
 
 ctx.fillStyle = "green";
-let x = 0;
-let y = 20;
+let x = 10;
+let y = 10;
 const width = 100;
 const height = 150;
 
-// setInterval(drawSquare, 10)
+setInterval(drawSquare, 1000);
 
 function drawSquare() {
-    resetCanvas()
+    resetCanvas();
     ctx.fillRect(x, y, width, height);
 }
-drawSquare()
 
 function resetCanvas(){
- ctx.clearRect(0,0, canvas.width, canvas.height);
+ ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function moveObject (Direction){
+    switch (Direction){
+        case "up":
+            y -= speed;
+            break;
+        case "down":
+            y += speed;
+            break;
+        case "left":
+            x -= speed;
+            break;
+        case "right":
+            x += speed;
+            break;
+    }
+    drawSquare();
 }
 
 document.addEventListener('keydown', (event) => {
-//   console.log(`key pressed: ${event.key}`);
-    if (event.key === 'w' || event.key === 'W'){
-        // Mudar a coordenada, aumentar ou diminuir x
+  console.log(`key pressed: ${event.key}`);
+    if (event.key === 'd' || event.key === 'D'){
         x++;
-        // Desenhar o quadrado
-        ctx.fillRect(x, y, width, height);
+        drawSquare();
+    } else if (event.key === "a" || event.key === "A"){
+        x--;
+        drawSquare()
+    } else if (event.key === "w"||event.key === "W"){
+        y--;
+        drawSquare()
+    } else if (event.key === "s"||event.key ==="S"){
+        y++;
+        drawSquare()
     }
 });
+
+
+
 
 
 

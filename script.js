@@ -10,7 +10,18 @@ const height = 150;
 let speed = 3;
 let intervalId;
 
+
+ctx.fillStyle = "blue";
+ctx.fillRect(20, 100, 50, 75);
+
+function drawSquare2(){
+    ctx.fillStyle = "blue";
+resetCanvas();
+ctx.fillRect(20, 100, 50, 75);
+}
+
 function drawSquare() {
+    ctx.fillStyle= "red";
     resetCanvas();
     ctx.fillRect(x, y, width, height);
 }
@@ -82,11 +93,7 @@ document.addEventListener('keyup', (event) => {
 });
 
 drawSquare();
-
-
-
-
-
+drawSquare2();
 
 
 

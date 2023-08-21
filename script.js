@@ -1,3 +1,10 @@
+/*
+ * Table of contents:
+ * 1. Game canvas
+ * 2. Squares definition
+ * 3. Draw squares
+ * 4. Movement
+ */
 const canvas = document.getElementById("ca");
 const ctx = canvas.getContext("2d");
 

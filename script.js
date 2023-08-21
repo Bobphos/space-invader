@@ -1,12 +1,13 @@
 const canvas = document.getElementById("ca");
 const ctx = canvas.getContext("2d");
 
+
 ctx.fillStyle = "green";
 let x = 40;
 let y = 200;
 const width = 100;
 const height = 150;
-let speed = 2; 
+let speed = 3;
 let intervalId;
 
 function drawSquare() {
@@ -17,7 +18,7 @@ function drawSquare() {
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-
+setInterval(1000);
 function startMoving(direction) {
     if (!intervalId) {
         intervalId = setInterval(() => {
@@ -80,7 +81,8 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-drawSquare(); 
+drawSquare();
+
 
 
 

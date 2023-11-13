@@ -19,3 +19,6 @@
 #maincontent {
     display: none;
 }
+#canvascontainer {
+    position: relative;
+}

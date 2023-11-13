@@ -100,3 +100,4 @@ function startApp() {
     document.getElementById('maincontent').style.display = 'block';
 }
 
+

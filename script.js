@@ -95,5 +95,8 @@ document.addEventListener('keyup', (event) => {
 drawSquare();
 drawSquare2();
 
-
+function startApp() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('maincontent').style.display = 'block';
+}
 

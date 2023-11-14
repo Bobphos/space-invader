@@ -1,61 +1,44 @@
 const canvas = document.getElementById("ca");
 const ctx = canvas.getContext("2d");
 
-
-ctx.fillStyle = "green";
-let x = 40;
-let y = 200;
-const width = 100;
-const height = 150;
-let speed = 3;
-let intervalId;
-
-
-ctx.fillStyle = "blue";
-ctx.fillRect(20, 100, 50, 75);
-
-function drawSquare2(){
-    ctx.fillStyle = "blue";
-resetCanvas();
-ctx.fillRect(20, 100, 50, 75);
-}
-
-function drawSquare() {
-    ctx.fillStyle= "red";
-    resetCanvas();
-    ctx.fillRect(x, y, width, height);
+function startApp() {
+    document.getElementById('startScreen').style.display = 'none';
+    document.getElementById('maincontent').style.display = 'block';
 }
 
 function resetCanvas() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-setInterval(1000);
-function startMoving(direction) {
-    if (!intervalId) {
-        intervalId = setInterval(() => {
-            moveSquare(direction);
-            drawSquare();
-        }, speed);
-    }
+
+const width1 = 100;
+const height1 = 150;
+const color1 = "blue";
+let x1 = 40;
+let y1 = 200;
+let speed1 = 3;
+let intervalId;
+
+const width2 = 100;
+const height2 = 150;
+const color2 = "green";
+let x2 = 40;
+let y2 = 0;
+let speed2 = 3;
+
+
+setInterval(drawSquares, 100);
+
+function drawSquares() {
+    resetCanvas();
+
+    ctx.fillStyle = color1;
+    ctx.fillRect(x1, y1, width1, height1);
+
+    ctx.fillStyle = color2;
+    ctx.fillRect(x2, y2, width2, height2);
 }
 
-function stopMoving() {
-    clearInterval(intervalId);
-    intervalId = null;
-}
-
-function moveSquare(direction) {
-    if (direction === "right") {
-        x += speed;
-    } else if (direction === "left") {
-        x -= speed;
-    } else if (direction === "up") {
-        y -= speed;
-    } else if (direction === "down") {
-        y += speed;
-    }
-}
-
+/* 4. Movement */
 document.addEventListener('keydown', (event) => {
     switch (event.key) {
         case 'd':
@@ -92,12 +75,28 @@ document.addEventListener('keyup', (event) => {
     }
 });
 
-drawSquare();
-drawSquare2();
-
-function startApp() {
-    document.getElementById('startScreen').style.display = 'none';
-    document.getElementById('maincontent').style.display = 'block';
+function startMoving(direction) {
+    if (!intervalId) {
+        intervalId = setInterval(() => {
+            moveSquare(direction);
+            drawSquares();
+        }, speed1);
+    }
 }
 
+function stopMoving() {
+    clearInterval(intervalId);
+    intervalId = null;
+}
 
+function moveSquare(direction) {
+    if (direction === "right") {
+        x1 += speed1;
+    } else if (direction === "left") {
+        x1 -= speed1;
+    } else if (direction === "up") {
+        y1 -= speed1;
+    } else if (direction === "down") {
+        y1 += speed1;
+    }
+}

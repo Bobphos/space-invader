@@ -16,15 +16,15 @@ const color1 = "blue";
 let x1 = 40;
 let y1 = 200;
 let speed1 = 3;
+let health1 = 100; // Initial health for square 1
 let intervalId;
 
-const width2 = 100;
-const height2 = 150;
+const width2 = 50;
+const height2 = 75;
 const color2 = "green";
 let x2 = 40;
 let y2 = 0;
 let speed2 = 3;
-
 
 setInterval(drawSquares, 100);
 
@@ -36,6 +36,11 @@ function drawSquares() {
 
     ctx.fillStyle = color2;
     ctx.fillRect(x2, y2, width2, height2);
+
+    // Display health for square 1
+    ctx.fillStyle = "black";
+    ctx.font = "20px Arial";
+    ctx.fillText("HP: " + health1, 10, 20);
 }
 
 /* 4. Movement */
@@ -80,6 +85,9 @@ function startMoving(direction) {
         intervalId = setInterval(() => {
             moveSquare(direction);
             drawSquares();
+
+            // Check for collisions or other conditions that may affect health
+            // For example, you can call a function like checkCollisions() here
         }, speed1);
     }
 }
@@ -98,5 +106,16 @@ function moveSquare(direction) {
         y1 -= speed1;
     } else if (direction === "down") {
         y1 += speed1;
+    }
+
+    // Update health based on certain conditions (you can customize this logic)
+    // For example, decrease health over time
+    health1 -= 1;
+
+    // Add additional logic for when health reaches zero or below
+    if (health1 <= 0) {
+        // Implement your game over logic or respawn logic here
+        // For now, we'll reset health to the initial value
+        health1 = 100;
     }
 }
